@@ -1,0 +1,43 @@
+:host,
+::ng-deep {
+  .w-100 {
+    width: 100%;
+  }
+
+  .h-custom {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mat-column-name {
+    flex: 0 0 30%;
+  }
+
+  .mat-column-date {
+    flex: 0 0 20%;
+  }
+
+  .mat-column-price {
+    flex: 0 0 25%;
+  }
+
+  .mat-column-status {
+    flex: 0 0 25%;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0;
+    padding-bottom: 0.5em;
+  }
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0;
+  }
+}
+
+.h-container {
+  height: calc(100% - 125px);
+  overflow-y: auto;
+}

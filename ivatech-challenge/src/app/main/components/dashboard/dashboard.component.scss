@@ -1,0 +1,22 @@
+:host,
+::ng-deep {
+  .w-100 {
+    width: 100%;
+  }
+
+  .mat-column-name {
+    flex: 0 0 40%;
+  }
+
+  .mat-column-price {
+    flex: 0 0 20%;
+  }
+
+  .mat-column-unitsSold {
+    flex: 0 0 20%;
+  }
+
+  .mat-column-revenue {
+    flex: 0 0 20%;
+  }
+}

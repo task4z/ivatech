@@ -1,0 +1,24 @@
+<div class="d-flex h-100 w-100">
+  <div class="col-4 col-sm-2 col-lg-1 border-right">
+    <div class="row align-items-center justify-content-center pt-5">
+      <img
+        class="col-6 col-sm-8"
+        src="../../../../assets/Freddys_Logo.svg"
+        alt="Freddy's logo"
+        alt="fredy's logo"
+      />
+    </div>
+    <div class="row align-items-center justify-content-center pt-2">
+      <a href="/dashboard"> Dashboard </a>
+    </div>
+    <div class="row align-items-center justify-content-center pt-2">
+      <a href="/orders">Orders</a>
+    </div>
+    <div class="row align-items-center justify-content-center pt-2">
+      <a href="/login" (click)="logout()">Logout</a>
+    </div>
+  </div>
+  <div class="col-7 col-sm-10 col-lg-11">
+    <router-outlet></router-outlet>
+  </div>
+</div>

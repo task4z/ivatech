@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-between align-items-center mt-3">
+  <div>
+    <h2 class="m-0">Orders</h2>
+  </div>
+  <div>
+    <form>
+      <div class="d-flex align-items-center justify-content-center">
+        <mat-icon fontIcon="search"></mat-icon>
+        <mat-form-field appearance="outline" class="p-0">
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="search"
+            name="search"
+            (keyup)="term$.next(search)"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="mat-elevation-z8 mt-3 w-100 h-container">
+  <table mat-table [dataSource]="dataSource" class="w-100 h-custom">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Product Name</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.date | date: "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.price }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        <strong
+          [ngClass]="{
+            'text-success': element.status === 'delivered',
+            'text-danger': element.status === 'processing'
+          }"
+          >{{ element.status | titlecase }}</strong
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div class="d-flex col-12 align-items-center mt-3">
+  <mat-icon
+    fontIcon="skip_previous"
+    (click)="goToPreviousPage()"
+    *ngIf="page > 1"
+    role="button"
+  ></mat-icon>
+  Page {{ page }} of {{ numberOfPages }}
+  <mat-icon
+    fontIcon="skip_next"
+    (click)="goToNextPage()"
+    *ngIf="page < total / dataSource.data.length"
+    role="button"
+  ></mat-icon>
+</div>

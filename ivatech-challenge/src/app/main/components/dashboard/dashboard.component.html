@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-12 mt-3">
+    <h1>Dashboard</h1>
+  </div>
+</div>
+<div class="row justify-content-between">
+  <div class="col-2" *ngFor="let item of dashboard?.header">
+    <div class="col-12 border">
+      <p class="mb-0 mt-3">{{ item.label }}</p>
+      <h2>{{ item.total + " / " + item.orders + " orders" }}</h2>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-between align-items-center w-25 mt-3">
+  <h2 *ngIf="!checked">Revenue (last 7 days)</h2>
+  <h2 *ngIf="checked">Revenue (last 12 months)</h2>
+  <mat-slide-toggle
+    [checked]="checked"
+    (change)="checked = !checked"
+  ></mat-slide-toggle>
+</div>
+<div class="row">
+  <div *ngIf="dashboard?.lastSevenDays && !checked">
+    <ngx-charts-bar-vertical
+      [view]="[700, 400]"
+      [results]="dashboard?.lastSevenDays"
+      [gradient]="false"
+      [xAxis]="true"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+  <div *ngIf="dashboard?.lastTwelveMonths && checked">
+    <ngx-charts-bar-vertical
+      [view]="[700, 400]"
+      [results]="dashboard?.lastTwelveMonths"
+      [gradient]="false"
+      [xAxis]="true"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+</div>
+<div class="mat-elevation-z8 mt-3">
+  <table mat-table [dataSource]="dataSource" class="w-100">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Product Name</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.price }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="unitsSold">
+      <th mat-header-cell *matHeaderCellDef># Units Sold</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.unitsSold }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="revenue">
+      <th mat-header-cell *matHeaderCellDef>Revenue</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.revenue }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons>
+  </mat-paginator>
+</div>
