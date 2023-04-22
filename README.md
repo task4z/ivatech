@@ -1,4 +1,3 @@
-# https://rulesandanagrams.com
 ### Objective
 
 Your assignment is to implement an analytics dashboard using TypeScript, Angular and Rxjs.
